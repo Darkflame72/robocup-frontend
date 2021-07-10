@@ -6,7 +6,7 @@
           <div class="flex-shrink-0">
             <img
               class="h-8 w-18"
-              src="icon.png"
+              src="/icon.png"
               alt="Workflow"
             />
           </div>

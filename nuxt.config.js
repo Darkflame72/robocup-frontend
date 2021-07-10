@@ -53,7 +53,9 @@ export default {
     // https://i18n.nuxtjs.org/
     "nuxt-i18n",
     // https://sentry.nuxtjs.org/
-    '@nuxtjs/sentry'
+    '@nuxtjs/sentry',
+    // https://sitemap.nuxtjs.org/
+    '@nuxtjs/sitemap'
 
   ],
 
