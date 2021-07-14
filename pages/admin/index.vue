@@ -25,6 +25,12 @@
                     scope="col"
                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
+                    Phone Number
+                  </th>
+                  <th
+                    scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
                     Status
                   </th>
                   <th
@@ -45,7 +51,7 @@
                   >
                     <NuxtLink
                       to="/admin/create"
-                      class="text-indigo-600 hover:text-indigo-900"
+                      class="text-green-600 hover:text-green-900"
                     >
                       <!-- Heroicon name: outline/user-add -->
                       <svg
@@ -69,6 +75,7 @@
                   <td class="px-6 py-4 whitespace-nowrap"></td>
                   <td class="px-6 py-4 whitespace-nowrap"></td>
                   <td class="px-6 py-4 whitespace-nowrap"></td>
+                  <td class="px-6 py-4 whitespace-nowrap"></td>
                 </tr>
                 <tr v-for="user in userList" :key="user.email">
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -76,6 +83,9 @@
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {{ user.full_name }}
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {{ user.phone_number }}
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
                     <span
@@ -98,8 +108,18 @@
                   >
                     <NuxtLink
                       :to="`/admin/edit/${user.id}`"
-                      class="text-indigo-600 hover:text-indigo-900"
+                      class="text-green-600 hover:text-green-900"
                       >Edit</NuxtLink
+                    >
+                  </td>
+                  <td
+                    class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+                  >
+                    <button
+                      type="submit" 
+                      class="text-green-600 hover:text-green-900"  
+                      @click.prevent="_deleteUsers(user.uuid)"
+                      >Delete</button
                     >
                   </td>
                 </tr>
@@ -120,10 +140,18 @@ import { Component, Vue, Action, Getter } from "nuxt-property-decorator"
 })
 export default class AdminDashboard extends Vue {
   @Action("admin/getUsers") getUsers
+  @Action("admin/deleteUser") deleteUser
   @Getter("admin/adminUsers") userList
 
   created() {
     this.getUsers()
+  }
+
+  public async _deleteUsers(userUuid: string) {
+    // TODO
+    await this.deleteUser(userUuid)
+    this.$router.push("/admin")
+    // this.getUsers()
   }
 
   asyncData({ store }) {

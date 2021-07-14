@@ -1,12 +1,13 @@
 import { IUserProfile } from "@/interfaces"
+import { AdminState } from "./state"
 
 export default {
-  setUsers(state, payload: IUserProfile[]) {
+  setUsers(state: AdminState, payload: IUserProfile[]) {
     state.users = payload
   },
-  setUser(state, payload: IUserProfile) {
+  setUser(state: AdminState, payload: IUserProfile) {
     const users = state.users.filter(
-      (user: IUserProfile) => user.id !== payload.id
+      (user: IUserProfile) => user.uuid !== payload.uuid
     )
     users.push(payload)
     state.users = users

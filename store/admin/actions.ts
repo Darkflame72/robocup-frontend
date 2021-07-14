@@ -15,7 +15,7 @@ export default {
   },
   async updateUser(
     { commit, dispatch, rootState },
-    payload: { id: number; user: IUserProfileUpdate }
+    payload: { uuid: string; user: IUserProfileUpdate }
   ) {
     try {
       const loadingNotification = {
@@ -25,7 +25,7 @@ export default {
       await commit("main/addNotification", loadingNotification, { root: true })
       const response = (
         await Promise.all([
-          api.updateUser(rootState.main.token, payload.id, payload.user),
+          api.updateUser(rootState.main.token, payload.uuid, payload.user),
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           await new Promise<void>((resolve) =>
             setTimeout(() => resolve(), 500)
@@ -71,6 +71,34 @@ export default {
         "main/addNotification",
         {
           content: "User successfully created",
+          color: "success",
+        },
+        { root: true }
+      )
+    } catch (error) {
+      await dispatch("main/checkApiError", error, { root: true })
+    }
+  },
+  async deleteUser(
+    { commit, dispatch, rootState },
+    userId: string
+  ) {
+    try {
+      const loadingNotification = { content: "Deleting...", showProgress: true }
+      await commit("main/addNotification", loadingNotification, { root: true })
+      await Promise.all([
+        api.deleteUser(rootState.main.token, userId),
+        await new Promise<void>((resolve) =>
+          setTimeout(() => resolve(), 500)
+        ),
+      ])
+      await commit("main/removeNotification", loadingNotification, {
+        root: true,
+      })
+      await commit(
+        "main/addNotification",
+        {
+          content: "User successfully deleted",
           color: "success",
         },
         { root: true }

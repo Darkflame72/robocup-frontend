@@ -28,13 +28,13 @@
                   <span class="sr-only">Workflow</span>
                   <img
                     class="h-8 w-auto sm:h-10"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                    src="/icon.png"
                   />
                 </a>
                 <div class="-mr-2 flex items-center md:hidden">
                   <button
                     type="button"
-                    class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                    class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500"
                     aria-expanded="false"
                     @click="isOpen = !isOpen"
                   >
@@ -73,12 +73,12 @@
               <NuxtLink
                 v-show="!isLoggedIn"
                 to="/login"
-                class="font-medium text-indigo-600 hover:text-indigo-500"
+                class="font-medium text-green-600 hover:text-green-500"
                 >Sign in</NuxtLink
               >
               <a
                 v-show="isLoggedIn"
-                class="font-medium text-indigo-600 hover:text-indigo-500"
+                class="font-medium text-green-600 hover:text-green-500"
                 @click="logout"
                 >Sign out</a
               >
@@ -122,7 +122,7 @@
                 <div class="-mr-2">
                   <button
                     type="button"
-                    class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                    class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500"
                     @click="isOpen = !isOpen"
                   >
                     <span class="sr-only">Close main menu</span>
@@ -160,12 +160,12 @@
               <NuxtLink
                 v-show="!isLoggedIn"
                 to="/login"
-                class="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100"
+                class="block w-full px-5 py-3 text-center font-medium text-green-600 bg-gray-50 hover:bg-gray-100"
                 >Sign in</NuxtLink
               >
               <a
                 v-show="isLoggedIn"
-                class="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100"
+                class="block w-full px-5 py-3 text-center font-medium text-green-600 bg-gray-50 hover:bg-gray-100"
                 @click="logout"
                 >Sign out</a
               >

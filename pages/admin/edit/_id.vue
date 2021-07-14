@@ -47,7 +47,7 @@
                             v-model="isActive"
                             name="isActive"
                             type="checkbox"
-                            class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                            class="focus:ring-green-500 h-4 w-4 text-green-600 border-gray-300 rounded"
                           />
                         </div>
                         <div class="ml-3 text-sm">
@@ -68,7 +68,7 @@
                             v-model="isSuperuser"
                             name="isSuperuser"
                             type="checkbox"
-                            class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                            class="focus:ring-green-500 h-4 w-4 text-green-600 border-gray-300 rounded"
                           />
                         </div>
                         <div class="ml-3 text-sm">
@@ -94,7 +94,7 @@
                         v-model="setPassword"
                         name="setPassword"
                         type="checkbox"
-                        class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                        class="focus:ring-green-500 h-4 w-4 text-green-600 border-gray-300 rounded"
                       />
                     </div>
                     <div class="col-span-12">
@@ -154,7 +154,7 @@
               </button>
               <button
                 type="submit"
-                class="btn btn-indigo"
+                class="btn btn-green"
                 @click.prevent="submit"
               >
                 Update
@@ -213,7 +213,7 @@ export default class AdminEditUser extends Vue {
       updatedProfile.password = this.password1
     }
     await this.updateUser({
-      id: this.user!.id,
+      uuid: this.user!.uuid,
       user: updatedProfile,
     })
     this.$router.push("/admin")
@@ -245,13 +245,13 @@ export default class AdminEditUser extends Vue {
 
 <style>
 .inpt {
-  @apply mt-1 relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-300 focus:border-indigo-300 shadow-sm sm:text-sm;
+  @apply mt-1 relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-300 focus:border-green-300 shadow-sm sm:text-sm;
 }
 .btn {
-  @apply mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm;
+  @apply mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm;
 }
-.btn-indigo {
-  @apply text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+.btn-green {
+  @apply text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500;
 }
 .lgnd {
   @apply block text-sm font-light text-gray-700;

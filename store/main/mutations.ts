@@ -1,29 +1,23 @@
 import { IUserProfile } from "@/interfaces"
-import { AppNotification } from "./state"
+import { AppNotification, MainState } from "./state"
 
 export default {
-  setToken(state, payload: string) {
+  setToken(state: MainState, payload: string) {
     state.token = payload
   },
-  setLoggedIn(state, payload: boolean) {
+  setLoggedIn(state: MainState, payload: boolean) {
     state.isLoggedIn = payload
   },
-  setLogInError(state, payload: boolean) {
+  setLogInError(state: MainState, payload: boolean) {
     state.logInError = payload
   },
-  setUserProfile(state, payload: IUserProfile) {
+  setUserProfile(state: MainState, payload: IUserProfile) {
     state.userProfile = payload
   },
-  setDashboardMiniDrawer(state, payload: boolean) {
-    state.dashboardMiniDrawer = payload
-  },
-  setDashboardShowDrawer(state, payload: boolean) {
-    state.dashboardShowDrawer = payload
-  },
-  addNotification(state, payload: AppNotification) {
+  addNotification(state: MainState, payload: AppNotification) {
     state.notifications.push(payload)
   },
-  removeNotification(state, payload: AppNotification) {
+  removeNotification(state: MainState, payload: AppNotification) {
     state.notifications = state.notifications.filter(
       (notification) => notification !== payload
     )

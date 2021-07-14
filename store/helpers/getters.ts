@@ -1,3 +1,5 @@
+import { HelperState } from "./state";
+
 export default {
-  headingTitle: (state) => state.headingTitle,
+  headingTitle: (state: HelperState) => state.headingTitle,
 }

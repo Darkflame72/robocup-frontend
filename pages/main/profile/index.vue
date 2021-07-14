@@ -41,6 +41,20 @@
             </dd>
           </div>
           <div
+            class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+          >
+            <dt class="text-sm font-medium text-gray-500">Phone Number</dt>
+            <dd
+              v-if="userProfile && userProfile.phone_number"
+              class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+            >
+              {{ userProfile.phone_number }}
+            </dd>
+            <dd v-else class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              -----
+            </dd>
+          </div>
+          <div
             class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
           >
             <dt class="text-sm font-medium text-gray-500"></dt>
@@ -81,6 +95,6 @@ export default class UserProfile extends Vue {
 
 <style>
 .btn {
-  @apply mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm;
+  @apply mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm;
 }
 </style>

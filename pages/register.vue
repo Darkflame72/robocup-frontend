@@ -289,14 +289,16 @@ export default class Register extends Vue {
   public email: string = ""
   public password1 = ""
   public password2 = ""
+  public phoneNumber = 0
 
   public async submit() {
     const createdProfile: IUserOpenProfileCreate = {
       email: this.email,
       password: this.password1,
+      full_name: this.fullName,
     }
-    if (this.fullName) {
-      createdProfile.full_name = this.fullName
+    if (this.phoneNumber) {
+      createdProfile.phone_number = this.phoneNumber
     }
     await this.createMe(createdProfile)
     this.$router.push("/login")

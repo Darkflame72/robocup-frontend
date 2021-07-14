@@ -1,13 +1,14 @@
 <template>
   <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
     <div class="bg-white shadow overflow-hidden sm:rounded-lg">
-      <ValidationObserver>
-        <form>
+      <ValidationObserver v-slot="{ handleSubmit }">
+        <form @submit.prevent="handleSubmit(submit)">
           <div class="shadow overflow-hidden rounded-md">
             <div class="px-4 py-5 bg-white sm:p-6">
               <div class="grid grid-cols-6 gap-6">
                 <div class="col-span-6 sm:col-span-4">
                   <label for="full_name" class="lgnd">Full name</label>
+                  <ValidationProvider v-slot="{ errors }" rules="required">
                   <input
                     id="full_name"
                     v-model="fullName"
@@ -16,17 +17,41 @@
                     :placeholder="fullName"
                     class="inpt"
                   />
+                  <span
+                      class="block px-3 py-2 text-sm font-light text-gray-700"
+                      >{{ errors[0] }}</span
+                    >
+                  </ValidationProvider>
                 </div>
 
                 <div class="col-span-6 sm:col-span-4">
                   <label for="email_address" class="lgnd">Email address</label>
-                  <ValidationProvider v-slot="{ errors }" rules="email">
+                  <ValidationProvider v-slot="{ errors }" rules="required|email">
                     <input
                       id="email_address"
                       v-model="email"
                       type="text"
+                      required
                       autocomplete="email"
                       :placeholder="email"
+                      class="inpt"
+                    />
+                    <span
+                      class="block px-3 py-2 text-sm font-light text-gray-700"
+                      >{{ errors[0] }}</span
+                    >
+                  </ValidationProvider>
+                </div>
+
+                <div class="col-span-6 sm:col-span-4">
+                  <label for="phoneNumber" class="lgnd">Phone Number</label>
+                  <ValidationProvider v-slot="{ errors }" rules="integer">
+                    <input
+                      id="phoneNumber"
+                      v-model="phoneNumber"
+                      type="text"
+                      autocomplete="phoneNumber"
+                      :placeholder="phoneNumber"
                       class="inpt"
                     />
                     <span
@@ -47,7 +72,7 @@
                             v-model="isActive"
                             name="isActive"
                             type="checkbox"
-                            class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                            class="focus:ring-green-500 h-4 w-4 text-green-600 border-gray-300 rounded"
                           />
                         </div>
                         <div class="ml-3 text-sm">
@@ -68,7 +93,7 @@
                             v-model="isSuperuser"
                             name="isSuperuser"
                             type="checkbox"
-                            class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                            class="focus:ring-green-500 h-4 w-4 text-green-600 border-gray-300 rounded"
                           />
                         </div>
                         <div class="ml-3 text-sm">
@@ -131,16 +156,15 @@
               </div>
             </div>
             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-              <button type="submit" class="btn" @click.prevent="cancel">
+              <button type="submit" class="btn"  @click.prevent="cancel">
                 Cancel
               </button>
-              <button type="submit" class="btn" @click.prevent="reset">
+              <button type="submit" class="btn"  @click.prevent="reset">
                 Reset
               </button>
               <button
                 type="submit"
-                class="btn btn-indigo"
-                @click.prevent="submit"
+                class="btn btn-green"
               >
                 Create
               </button>
@@ -168,12 +192,14 @@ export default class AdminEditUser extends Vue {
   public setPassword: boolean = false
   public password1: string = ""
   public password2: string = ""
+  public phoneNumber: number = 0
 
   public reset() {
     this.password1 = ""
     this.password2 = ""
     this.fullName = ""
     this.email = ""
+    this.phoneNumber = 0
     this.isActive = true
     this.isSuperuser = false
   }
@@ -185,16 +211,12 @@ export default class AdminEditUser extends Vue {
   public async submit() {
     const createdProfile: IUserProfileCreate = {
       email: this.email,
+      full_name: this.fullName,
+      is_active: this.isActive,
+      is_superuser: this.isSuperuser,
+      password: this.password1,
+      phone_number: this.phoneNumber,
     }
-    if (this.fullName) {
-      createdProfile.full_name = this.fullName
-    }
-    if (this.email) {
-      createdProfile.email = this.email
-    }
-    createdProfile.is_active = this.isActive
-    createdProfile.is_superuser = this.isSuperuser
-    createdProfile.password = this.password1
     await this.createUser(createdProfile)
     this.$router.push("/admin")
   }
@@ -207,13 +229,13 @@ export default class AdminEditUser extends Vue {
 
 <style>
 .inpt {
-  @apply mt-1 relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-300 focus:border-indigo-300 shadow-sm sm:text-sm;
+  @apply mt-1 relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-300 focus:border-green-300 shadow-sm sm:text-sm;
 }
 .btn {
-  @apply mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm;
+  @apply mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm;
 }
-.btn-indigo {
-  @apply text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+.btn-green {
+  @apply text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500;
 }
 .lgnd {
   @apply block text-sm font-light text-gray-700;

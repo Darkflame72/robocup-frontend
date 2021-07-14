@@ -1,5 +1,7 @@
+import { HelperState } from "./state"
+
 export default {
-  setHeadingTitle(state, payload: string) {
+  setHeadingTitle(state: HelperState, payload: string) {
     state.headingTitle = payload
   },
 }

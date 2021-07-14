@@ -46,7 +46,7 @@ export const api = {
       authHeaders(token)
     )
   },
-  async updateUser(token: string, userId: number, data: IUserProfileUpdate) {
+  async updateUser(token: string, userId: string, data: IUserProfileUpdate) {
     return await axios.put(
       `${process.env.apiUrl}/api/v1/users/${userId}`,
       data,
@@ -57,6 +57,12 @@ export const api = {
     return await axios.post(
       `${process.env.apiUrl}/api/v1/users/`,
       data,
+      authHeaders(token)
+    )
+  },
+  async deleteUser(token: string, userId: string) {
+    return await axios.delete(
+      `${process.env.apiUrl}/api/v1/users/${userId}`,
       authHeaders(token)
     )
   },

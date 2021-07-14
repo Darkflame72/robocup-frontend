@@ -19,7 +19,7 @@ export default {
   env: {
     baseUrl: process.env.BASE_URL || "http://localhost:3000",
     appName: process.env.VUE_APP_NAME,
-    apiUrl: "https://robocupapi.darkflame.dev",
+    apiUrl: "http://localhost",
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
