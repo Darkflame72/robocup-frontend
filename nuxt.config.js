@@ -100,6 +100,12 @@ export default {
     },
   },
 
+    sitemap: {
+      hostname: 'https://example.com',
+      gzip: true,
+      
+    },
+
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
