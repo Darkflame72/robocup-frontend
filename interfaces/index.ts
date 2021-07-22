@@ -20,7 +20,7 @@ export interface IUserProfileUpdate {
 export interface IUserProfileCreate {
   email: string
   full_name: string
-  password?: string
+  password: string
   is_superuser?: boolean
   phone_number?: number
   is_active?: boolean
